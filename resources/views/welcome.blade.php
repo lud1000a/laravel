@@ -3,6 +3,10 @@
 @section('title', 'Pagina principal')
 
 @section('content')
+
+@foreach($events as $event)
+    <p>{{ $event->title}} -- {{$event -> description}}</p>
+@endforeach
 <body class="antialiased">
         @if(1>-1)
         <p>comparação do if</p>
