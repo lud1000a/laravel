@@ -15,4 +15,23 @@ class EventController extends Controller
     public function create(){
         return view('events.create');
     }
+
+    public function store(Request $request){
+        $event = new Event;
+        $event->title = $request->title;
+        $event->description = $request->description;
+        $event->private = $request->private;
+
+        /*Upload de imagens
+    if($request->hasFile('image') && $request->file('image')->isValid()){
+        $requestImage = $request->image;
+        $extension= $requestImage->extension();
+
+        $imageName = md5($requestImage->getClientOriginalName(). strtotime("now")). ".". $extension;
+        $requestImage->image->move(public_path('img/events'), $imageName);
+        $event->image=$imageName;
+    }*/
+    $event->save();
+    return redirect('/');//->with('msg', 'Mensagem');
+    }
 }
